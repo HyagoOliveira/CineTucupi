@@ -1,4 +1,10 @@
+import com.cadastro.Sexo
+import com.cadastro.Usuario
+import com.security.Role
+import com.security.User
+import com.security.UserRole
 import grails.util.Environment
+
 
 class BootStrap {
 
@@ -7,8 +13,7 @@ class BootStrap {
 
     def init = { servletContext ->
         systemInicialLog()
-        loadFixtures()
-//        DomainConfigurationFilter.init(grailsApplication)
+        loadDefaultSettings()
     }
     def destroy = {
     }
@@ -23,7 +28,9 @@ class BootStrap {
         log.info "Environment: ${Environment.current.name}"
     }
 
-    def loadFixtures() {
-
+    def loadDefaultSettings() {
+        if(User.findByUsername('suporte.tucupi') == null){
+            fixtureLoader.load ("create_user_admin")
+        }
     }
 }
