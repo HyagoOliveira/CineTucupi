@@ -1,5 +1,5 @@
 
-<%@ page import="cadastro.Usuario" %>
+<%@ page import="com.cadastro.Usuario" %>
 <!DOCTYPE html>
 <html>
 	<head>

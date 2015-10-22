@@ -8,7 +8,7 @@ class BootStrap {
     def init = { servletContext ->
         systemInicialLog()
         loadFixtures()
-        DomainConfigurationFilter.init(grailsApplication)
+//        DomainConfigurationFilter.init(grailsApplication)
     }
     def destroy = {
     }

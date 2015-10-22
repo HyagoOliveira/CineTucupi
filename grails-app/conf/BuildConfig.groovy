@@ -77,5 +77,6 @@ grails.project.dependency.resolution = {
 
         compile ":fixtures:1.3"
         compile ":simple-captcha:1.0.0"
+        compile ":spring-security-core:2.0-RC5"
     }
 }

@@ -1,3 +1,13 @@
+/.metadata
+/Servers*
+*.bak
+/**/*.bak
 *.class
 *.*~
 *.iml
+*.war
+*.zip
+.classpath
+bin
+core
+.idea/*.xml
