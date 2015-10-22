@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
-    <modules />
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CineTucupi.iml" filepath="$PROJECT_DIR$/CineTucupi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CineTucupi-grailsPlugins.iml" filepath="$PROJECT_DIR$/CineTucupi-grailsPlugins.iml" />
+    </modules>
   </component>
 </project>
