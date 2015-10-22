@@ -1,0 +1,70 @@
+dataSource {
+    pooled = true
+    driverClassName = "org.postgresql.Driver"
+    username = "postgres"
+    configClass = HibernateFilterDomainConfiguration
+}
+hibernate {
+    cache.use_second_level_cache = true
+    cache.use_query_cache = false
+    cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory'
+}
+
+// environment specific settings
+environments {
+    development {
+        def devUrl = System.env['CINE_TUCUPI_DATABASE_DEVELOPMENT_URL']
+        def devPassword = System.env['CINE_TUCUPI_DATABASE_DEVELOPMENT_PASSWORD']
+        if (!devUrl) devUrl = "jdbc:postgresql://localhost/cinetucupi_development";
+        if (!devPassword) devPassword = "postgres";
+        dataSource {
+            //logSql = true
+            password = devPassword
+            url = devUrl
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+        }
+        //hibernate { format_sql = true }
+    }
+    homologation {
+        def devUrl = System.env['CINE_TUCUPI_DATABASE_HOMOLOGATION_URL']
+        if (!devUrl) devUrl = "jdbc:postgresql://148.5.7.215/cinetucupi_homologation";
+
+        dataSource {
+            password = "postgres"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = devUrl
+        }
+    }
+    test {
+        dataSource {
+            dbCreate = "update"
+            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+        }
+    }
+    production {
+        dataSource {
+            dbCreate = "update"
+            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            properties {
+                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
+                jmxEnabled = true
+                initialSize = 5
+                maxActive = 50
+                minIdle = 5
+                maxIdle = 25
+                maxWait = 10000
+                maxAge = 10 * 60000
+                timeBetweenEvictionRunsMillis = 5000
+                minEvictableIdleTimeMillis = 60000
+                validationQuery = "SELECT 1"
+                validationQueryTimeout = 3
+                validationInterval = 15000
+                testOnBorrow = true
+                testWhileIdle = true
+                testOnReturn = false
+                jdbcInterceptors = "ConnectionState"
+                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+            }
+        }
+    }
+}
