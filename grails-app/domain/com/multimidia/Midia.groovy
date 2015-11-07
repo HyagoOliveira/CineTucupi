@@ -16,7 +16,7 @@ class Midia {
     Ator ator
     Diretor diretor
 
-    static hasMany = [generos: Genero]
+    static hasMany = [generos: Genero, videos:ArquivoVideo, legendas : ArquivoLegenda]
 
     static constraints = {
         descricao nullable: true
