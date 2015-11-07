@@ -10,4 +10,4 @@
 .classpath
 bin
 core
-.idea/*.xml
+/.idea/*.xml
